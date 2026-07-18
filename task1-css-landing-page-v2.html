@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How the Web Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --indigo: #4338ca;
+      --indigo-dark: #3730a3;
+      --ink: #1e293b;
+      --muted: #64748b;
+      --bg: #f8f9fb;
+      --card: #ffffff;
+      --border: #e7e9ee;
+      --soft: #eef0ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .navbar .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+
+    .navbar .logo span {
+      color: var(--indigo);
+    }
+
+    .navbar nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 26px;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: var(--indigo);
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 70px 24px 60px;
+    }
+
+    .hero .tag {
+      display: inline-block;
+      background-color: var(--soft);
+      color: var(--indigo);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      max-width: 620px;
+      margin: 0 auto 18px;
+      color: var(--ink);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 30px;
+      font-size: 1.05rem;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--indigo);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--indigo-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: white;
+      color: var(--indigo);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--indigo);
+      transform: translateY(-2px);
+    }
+
+    /* STAT STRIP */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      padding: 34px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background-color: white;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat .num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--indigo);
+    }
+
+    .stat .desc {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 64px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    .section-head h2 {
+      font-size: 1.7rem;
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px 22px;
+    }
+
+    .feature .icon {
+      width: 42px;
+      height: 42px;
+      background-color: var(--soft);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .feature h3 {
+      font-size: 1.05rem;
+      margin: 0 0 8px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 0;
+    }
+
+    /* TECH ROW */
+    .tech-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tech-pill {
+      background-color: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 26px;
+      flex: 1;
+      min-width: 220px;
+      max-width: 280px;
+    }
+
+    .tech-pill h3 {
+      font-size: 1rem;
+      margin: 0 0 8px;
+      color: var(--indigo);
+    }
+
+    .tech-pill p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* ABOUT QUOTE */
+    .about-box {
+      background-color: var(--soft);
+      border-radius: 16px;
+      padding: 36px 40px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-box p {
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    code {
+      background-color: white;
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88em;
+      color: var(--indigo-dark);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 24px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        gap: 28px;
+      }
+
+      .tech-pill {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">web<span>fundamentals</span></div>
+    <nav>
+      <a href="#basics">Basics</a>
+      <a href="#technologies">Technologies</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+
+  <section class="hero" style="padding-top: 30px;">
+    <span class="tag">Web Fundamentals Project</span>
+    <h1>Understanding how the web actually works</h1>
+    <p>A short, practical breakdown of the client-server model, HTTP, and the technologies that make up every website you visit.</p>
+    <div class="btn-row">
+      <a href="#basics" class="btn btn-primary">Start Reading</a>
+      <a href="#about" class="btn btn-secondary">About This Page</a>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="num">3</div>
+      <div class="desc">Core Technologies</div>
+    </div>
+    <div class="stat">
+      <div class="num">2</div>
+      <div class="desc">Protocols Covered</div>
+    </div>
+    <div class="stat">
+      <div class="num">100%</div>
+      <div class="desc">Responsive Layout</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section id="basics">
+      <div class="section-head">
+        <h2>Web Basics</h2>
+        <p>The foundation every website is built on top of.</p>
+      </div>
+      <div class="feature-list">
+        <div class="feature">
+          <div class="icon">🔗</div>
+          <h3>Client-Server Model</h3>
+          <p>The browser asks for a page, and a server responds with the content.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>HTTP / HTTPS</h3>
+          <p>The protocol used to transfer data. HTTPS adds encryption for security.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🌐</div>
+          <h3>Domains &amp; Hosting</h3>
+          <p>A domain name points to a server, and hosting is where the files live.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="technologies">
+      <div class="section-head">
+        <h2>Core Technologies</h2>
+        <p>Three layers that come together to build a page.</p>
+      </div>
+      <div class="tech-row">
+        <div class="tech-pill">
+          <h3>HTML</h3>
+          <p>Provides the structure and content of a web page.</p>
+        </div>
+        <div class="tech-pill">
+          <h3>CSS</h3>
+          <p>Controls how the page looks — color, spacing, and layout.</p>
+        </div>
+        <div class="tech-pill">
+          <h3>JavaScript</h3>
+          <p>Adds interactivity. This page keeps things simple with none.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-head">
+        <h2>About This Page</h2>
+      </div>
+      <div class="about-box">
+        <p>
+          This page was built with semantic HTML and then styled with CSS —
+          covering typography, color, spacing, layout, and buttons — to give
+          a clean, modern look that adapts to any screen size, from
+          <code>&lt;header&gt;</code> down to <code>&lt;footer&gt;</code>.
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    &copy; 2026 — Web Fundamentals Assignment
+  </footer>
+
+</body>
+</html>
